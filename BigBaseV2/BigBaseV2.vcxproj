@@ -1,0 +1,644 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Dist|x64">
+      <Configuration>Dist</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{BAF9F07A-2664-A5F1-6FA2-5697DB4B8346}</ProjectGuid>
+    <IgnoreWarnCompileDuplicatedFilename>true</IgnoreWarnCompileDuplicatedFilename>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>BigBaseV2</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>atomic</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Dist|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+    <Import Project="$(VCTargetsPath)\BuildCustomizations\masm.props" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Dist|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+    <OutDir>..\bin\Debug\</OutDir>
+    <IntDir>..\bin\int\Debug\BigBaseV2\</IntDir>
+    <TargetName>BigBaseV2</TargetName>
+    <TargetExt>.dll</TargetExt>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+    <IgnoreImportLibrary>true</IgnoreImportLibrary>
+    <OutDir>..\bin\Release\</OutDir>
+    <IntDir>..\bin\int\Release\BigBaseV2\</IntDir>
+    <TargetName>atomic</TargetName>
+    <TargetExt>.dll</TargetExt>
+    <GenerateManifest>false</GenerateManifest>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Dist|x64'">
+    <LinkIncremental>false</LinkIncremental>
+    <IgnoreImportLibrary>true</IgnoreImportLibrary>
+    <OutDir>..\bin\Dist\</OutDir>
+    <IntDir>..\bin\int\Dist\BigBaseV2\</IntDir>
+    <TargetName>BigBaseV2</TargetName>
+    <TargetExt>.dll</TargetExt>
+    <GenerateManifest>false</GenerateManifest>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>common.hpp</PrecompiledHeaderFile>
+      <WarningLevel>Level3</WarningLevel>
+      <DisableSpecificWarnings>4100;4201;4307;4996;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;NOMINMAX;WIN32_LEAN_AND_MEAN;_WIN32_WINNT=0x601;_DEBUG;BIGBASEV2_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\vendor\fmtlib\include;..\vendor\json\single_include;..\vendor\MinHook\include;..\vendor\ImGui;..\vendor\g3log\src;src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <ForcedIncludeFiles>common.hpp</ForcedIncludeFiles>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <Optimization>Disabled</Optimization>
+      <MinimalRebuild>false</MinimalRebuild>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <EnableEnhancedInstructionSet>AdvancedVectorExtensions2</EnableEnhancedInstructionSet>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>..\bin\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <ImportLibrary>..\bin\Debug\BigBaseV2.lib</ImportLibrary>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>common.hpp</PrecompiledHeaderFile>
+      <WarningLevel>Level3</WarningLevel>
+      <DisableSpecificWarnings>4100;4201;4307;4996;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;NOMINMAX;WIN32_LEAN_AND_MEAN;_WIN32_WINNT=0x601;NDEBUG;BIGBASEV2_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\vendor\fmtlib\include;..\vendor\json\single_include;..\vendor\MinHook\include;..\vendor\ImGui;..\vendor\g3log\src;src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <ForcedIncludeFiles>common.hpp</ForcedIncludeFiles>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <MinimalRebuild>false</MinimalRebuild>
+      <StringPooling>true</StringPooling>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalLibraryDirectories>..\bin\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <ImportLibrary>..\bin\Release\BigBaseV2.lib</ImportLibrary>
+      <GenerateMapFile>true</GenerateMapFile>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Dist|x64'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>common.hpp</PrecompiledHeaderFile>
+      <WarningLevel>Level3</WarningLevel>
+      <TreatWarningAsError>true</TreatWarningAsError>
+      <DisableSpecificWarnings>4100;4201;4307;4996;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;NOMINMAX;WIN32_LEAN_AND_MEAN;_WIN32_WINNT=0x601;NDEBUG;BIGBASEV2_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\vendor\fmtlib\include;..\vendor\json\single_include;..\vendor\MinHook\include;..\vendor\ImGui;..\vendor\g3log\src;src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <ForcedIncludeFiles>common.hpp</ForcedIncludeFiles>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <MinimalRebuild>false</MinimalRebuild>
+      <StringPooling>true</StringPooling>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <EnableEnhancedInstructionSet>AdvancedVectorExtensions2</EnableEnhancedInstructionSet>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalLibraryDirectories>..\bin\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <ImportLibrary>..\bin\Dist\BigBaseV2.lib</ImportLibrary>
+      <GenerateMapFile>true</GenerateMapFile>
+      <TreatLinkerWarningAsErrors>true</TreatLinkerWarningAsErrors>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="abstract_option.h" />
+    <ClInclude Include="abstract_submenu.h" />
+    <ClInclude Include="aimbot.h" />
+    <ClInclude Include="all_scripts.h" />
+    <ClInclude Include="animation.h" />
+    <ClInclude Include="animations.h" />
+    <ClInclude Include="appearance.h" />
+    <ClInclude Include="arch_types.h" />
+    <ClInclude Include="blacklist_helper.h" />
+    <ClInclude Include="blacklist_manager.h" />
+    <ClInclude Include="bool_and_number.h" />
+    <ClInclude Include="break_option.h" />
+    <ClInclude Include="byte_patch.hpp" />
+    <ClInclude Include="caller.hpp" />
+    <ClInclude Include="CCommunications.h" />
+    <ClInclude Include="CNetComplaintMgr.hpp" />
+    <ClInclude Include="CNetGamePlayerDataMsg.hpp" />
+    <ClInclude Include="CObject.h" />
+    <ClInclude Include="CRCpp.h" />
+    <ClInclude Include="crossmap.h" />
+    <ClInclude Include="defs.h" />
+    <ClInclude Include="file.hpp" />
+    <ClInclude Include="file_manager.hpp" />
+    <ClInclude Include="folder.hpp" />
+    <ClInclude Include="FriendInfo.hpp" />
+    <ClInclude Include="FriendRegistry.hpp" />
+    <ClInclude Include="fx_sky.h" />
+    <ClInclude Include="fx_visuals.h" />
+    <ClInclude Include="fx_world_glow.h" />
+    <ClInclude Include="game_fx.h" />
+    <ClInclude Include="HashTable.hpp" />
+    <ClInclude Include="HTTPRequest.hpp" />
+    <ClInclude Include="iron_dome.h" />
+    <ClInclude Include="json.h" />
+    <ClInclude Include="json_util.h" />
+    <ClInclude Include="keyboard_option.h" />
+    <ClInclude Include="levels.h" />
+    <ClInclude Include="logger\filesinkhelper.ipp" />
+    <ClInclude Include="logger\g2log.hpp" />
+    <ClInclude Include="logger\g3log\active.hpp" />
+    <ClInclude Include="logger\g3log\atomicbool.hpp" />
+    <ClInclude Include="logger\g3log\crashhandler.hpp" />
+    <ClInclude Include="logger\g3log\filesink.hpp" />
+    <ClInclude Include="logger\g3log\future.hpp" />
+    <ClInclude Include="logger\g3log\g3log.hpp" />
+    <ClInclude Include="logger\g3log\generated_definitions.hpp" />
+    <ClInclude Include="logger\g3log\logcapture.hpp" />
+    <ClInclude Include="logger\g3log\loglevels.hpp" />
+    <ClInclude Include="logger\g3log\logmessage.hpp" />
+    <ClInclude Include="logger\g3log\logworker.hpp" />
+    <ClInclude Include="logger\g3log\moveoncopy.hpp" />
+    <ClInclude Include="logger\g3log\shared_queue.hpp" />
+    <ClInclude Include="logger\g3log\sink.hpp" />
+    <ClInclude Include="logger\g3log\sinkhandle.hpp" />
+    <ClInclude Include="logger\g3log\sinkwrapper.hpp" />
+    <ClInclude Include="logger\g3log\stacktrace_windows.hpp" />
+    <ClInclude Include="logger\g3log\stlpatch_future.hpp" />
+    <ClInclude Include="logger\g3log\time.hpp" />
+    <ClInclude Include="native_hooks.h" />
+    <ClInclude Include="native_timer.h" />
+    <ClInclude Include="netObject.hpp" />
+    <ClInclude Include="Network.hpp" />
+    <ClInclude Include="network_friends.h" />
+    <ClInclude Include="network_notifications.h" />
+    <ClInclude Include="network_player_search.h" />
+    <ClInclude Include="network_recent_players.h" />
+    <ClInclude Include="network_recovery.h" />
+    <ClInclude Include="network_recovery_misc.h" />
+    <ClInclude Include="network_recovery_rank.h" />
+    <ClInclude Include="network_recovery_stats.h" />
+    <ClInclude Include="network_recovery_unlocks.h" />
+    <ClInclude Include="network_selected_spawner.h" />
+    <ClInclude Include="network_selected_abusive_attackers.h" />
+    <ClInclude Include="network_selected_abusive_explosion.h" />
+    <ClInclude Include="network_selected_abusive_increment.h" />
+    <ClInclude Include="network_selected_crashes.h" />
+    <ClInclude Include="network_selected_esp.h" />
+    <ClInclude Include="network_selected_kicks.h" />
+    <ClInclude Include="network_selected_teleport.h" />
+    <ClInclude Include="network_selected_teleport_apartment.h" />
+    <ClInclude Include="network_selected_text.h" />
+    <ClInclude Include="network_selected_trolling.h" />
+    <ClInclude Include="network_selected_trolling_entity_spammer.h" />
+    <ClInclude Include="network_selected_trolling_notifications.h" />
+    <ClInclude Include="network_selected_vehicle.h" />
+    <ClInclude Include="network_services.h" />
+    <ClInclude Include="network_session_host.hpp" />
+    <ClInclude Include="network_spoofing.h" />
+    <ClInclude Include="network_spoofing_crew.h" />
+    <ClInclude Include="network_spoofing_crew_icon.h" />
+    <ClInclude Include="network_spoofing_crew_name.h" />
+    <ClInclude Include="network_spoofing_crew_tag.h" />
+    <ClInclude Include="network_spoofing_detection_flags.h" />
+    <ClInclude Include="network_spoofing_ip.h" />
+    <ClInclude Include="network_spoofing_name.h" />
+    <ClInclude Include="network_spoofing_rid.h" />
+    <ClInclude Include="network_toolkit.h" />
+    <ClInclude Include="net_array.h" />
+    <ClInclude Include="node_helpers.h" />
+    <ClInclude Include="node_types.h" />
+    <ClInclude Include="Obf32.hpp" />
+    <ClInclude Include="packet.h" />
+    <ClInclude Include="player.hpp" />
+    <ClInclude Include="players.h" />
+    <ClInclude Include="player_service.hpp" />
+    <ClInclude Include="protections.h" />
+    <ClInclude Include="protections_entity.h" />
+    <ClInclude Include="protections_join_blocking.h" />
+    <ClInclude Include="protections_misc.h" />
+    <ClInclude Include="protections_network_events.h" />
+    <ClInclude Include="protections_presence.h" />
+    <ClInclude Include="protections_reactions.h" />
+    <ClInclude Include="protections_script_events.h" />
+    <ClInclude Include="rate_limiter.hpp" />
+    <ClInclude Include="reason.h" />
+    <ClInclude Include="RemoteGamerInfo.hpp" />
+    <ClInclude Include="rlGamerHandle.hpp" />
+    <ClInclude Include="rlGamerInfo.hpp" />
+    <ClInclude Include="rlGamerInfoBase.hpp" />
+    <ClInclude Include="rlMetric.hpp" />
+    <ClInclude Include="rlSessionByGamerTaskResult.hpp" />
+    <ClInclude Include="rlSessionInfo.hpp" />
+    <ClInclude Include="ScInfo.hpp" />
+    <ClInclude Include="script_data.hpp" />
+    <ClInclude Include="script_patch.hpp" />
+    <ClInclude Include="script_patcher_service.hpp" />
+    <ClInclude Include="script_patches.hpp" />
+    <ClInclude Include="scroll_bool.h" />
+    <ClInclude Include="clipsets.h" />
+    <ClInclude Include="customs.h" />
+    <ClInclude Include="entity_gun.h" />
+    <ClInclude Include="explosion_gun.h" />
+    <ClInclude Include="generic_types.h" />
+    <ClInclude Include="gravity_gun.h" />
+    <ClInclude Include="gun_locker.h" />
+    <ClInclude Include="hand_trails.h" />
+    <ClInclude Include="impacts.h" />
+    <ClInclude Include="instructions.h" />
+    <ClInclude Include="lists.h" />
+    <ClInclude Include="magnet_gun.h" />
+    <ClInclude Include="memediting.hpp" />
+    <ClInclude Include="model.h" />
+    <ClInclude Include="movement.h" />
+    <ClInclude Include="network.h" />
+    <ClInclude Include="network_players.h" />
+    <ClInclude Include="network_selected_abusive.h" />
+    <ClInclude Include="network_selected_friendly.h" />
+    <ClInclude Include="network_selected_friendly_drops.h" />
+    <ClInclude Include="notify.h" />
+    <ClInclude Include="number.h" />
+    <ClInclude Include="on_screen_ped.h" />
+    <ClInclude Include="option.h" />
+    <ClInclude Include="math.h" />
+    <ClInclude Include="paint_gun.h" />
+    <ClInclude Include="particle_gun.h" />
+    <ClInclude Include="player.h" />
+    <ClInclude Include="player_submenu.h" />
+    <ClInclude Include="proofs.h" />
+    <ClInclude Include="ptfx.h" />
+    <ClInclude Include="render.h" />
+    <ClInclude Include="scenario.h" />
+    <ClInclude Include="scroll.h" />
+    <ClInclude Include="network_selected_player.h" />
+    <ClInclude Include="security_types.h" />
+    <ClInclude Include="simple_option.h" />
+    <ClInclude Include="simple_submenu.h" />
+    <ClInclude Include="snSession.hpp" />
+    <ClInclude Include="spawner.h" />
+    <ClInclude Include="src\common.hpp" />
+    <ClInclude Include="src\crossmap.hpp" />
+    <ClInclude Include="src\detour_hook.hpp" />
+    <ClInclude Include="src\features.hpp" />
+    <ClInclude Include="src\fiber_pool.hpp" />
+    <ClInclude Include="src\fonts.hpp" />
+    <ClInclude Include="src\function_types.hpp" />
+    <ClInclude Include="src\gta\PickupRewards.h" />
+    <ClInclude Include="src\gta\VehicleValues.h" />
+    <ClInclude Include="src\gta\Vehicles.h" />
+    <ClInclude Include="src\gta\Weapons.h" />
+    <ClInclude Include="src\gta\array.hpp" />
+    <ClInclude Include="src\gta\base.hpp" />
+    <ClInclude Include="src\gta\blip.hpp" />
+    <ClInclude Include="src\gta\color.hpp" />
+    <ClInclude Include="src\gta\decal_controller.hpp" />
+    <ClInclude Include="src\gta\enums.hpp" />
+    <ClInclude Include="src\gta\extensible.hpp" />
+    <ClInclude Include="src\gta\fwddec.hpp" />
+    <ClInclude Include="src\gta\joaat.hpp" />
+    <ClInclude Include="src\gta\matrix.hpp" />
+    <ClInclude Include="src\gta\natives.hpp" />
+    <ClInclude Include="src\gta\net_game_event.hpp" />
+    <ClInclude Include="src\gta\net_object_mgr.hpp" />
+    <ClInclude Include="src\gta\node_list.hpp" />
+    <ClInclude Include="src\gta\ped_factory.hpp" />
+    <ClInclude Include="src\gta\player.hpp" />
+    <ClInclude Include="src\gta\ref_aware.hpp" />
+    <ClInclude Include="src\gta\replay.hpp" />
+    <ClInclude Include="src\gta\script_handler.hpp" />
+    <ClInclude Include="src\gta\script_id.hpp" />
+    <ClInclude Include="src\gta\script_program.hpp" />
+    <ClInclude Include="src\gta\script_thread.hpp" />
+    <ClInclude Include="src\gta\sysMemAllocator.hpp" />
+    <ClInclude Include="src\gta\tls_context.hpp" />
+    <ClInclude Include="src\gta\vector.hpp" />
+    <ClInclude Include="src\gta_util.hpp" />
+    <ClInclude Include="src\menu.h" />
+    <ClInclude Include="src\hooking.hpp" />
+    <ClInclude Include="src\invoker.hpp" />
+    <ClInclude Include="src\logger.hpp" />
+    <ClInclude Include="src\memory\all.hpp" />
+    <ClInclude Include="src\memory\fwddec.hpp" />
+    <ClInclude Include="src\memory\handle.hpp" />
+    <ClInclude Include="src\memory\module.hpp" />
+    <ClInclude Include="src\memory\pattern.hpp" />
+    <ClInclude Include="src\memory\pattern_batch.hpp" />
+    <ClInclude Include="src\memory\range.hpp" />
+    <ClInclude Include="src\natives.hpp" />
+    <ClInclude Include="src\pointers.hpp" />
+    <ClInclude Include="src\renderer.hpp" />
+    <ClInclude Include="src\script.hpp" />
+    <ClInclude Include="src\script_global.hpp" />
+    <ClInclude Include="src\script_hook.hpp" />
+    <ClInclude Include="src\script_local.hpp" />
+    <ClInclude Include="src\script_mgr.hpp" />
+    <ClInclude Include="src\settings.h" />
+    <ClInclude Include="src\vmt_hook.hpp" />
+    <ClInclude Include="submenu.h" />
+    <ClInclude Include="submenus.h" />
+    <ClInclude Include="submenu_option.h" />
+    <ClInclude Include="text_box.h" />
+    <ClInclude Include="timer.h" />
+    <ClInclude Include="toggle_option.h" />
+    <ClInclude Include="unknown_types.h" />
+    <ClInclude Include="util.h" />
+    <ClInclude Include="vehicle.h" />
+    <ClInclude Include="vehicle_acrobatics.h" />
+    <ClInclude Include="vehicle_autopilot.h" />
+    <ClInclude Include="vehicle_boost.h" />
+    <ClInclude Include="vehicle_collision.h" />
+    <ClInclude Include="vehicle_color.h" />
+    <ClInclude Include="vehicle_doors.h" />
+    <ClInclude Include="vehicle_gravity.h" />
+    <ClInclude Include="vehicle_handling.h" />
+    <ClInclude Include="vehicle_health.h" />
+    <ClInclude Include="vehicle_movement.h" />
+    <ClInclude Include="vehicle_multipliers.h" />
+    <ClInclude Include="vehicle_parachute.h" />
+    <ClInclude Include="vehicle_primary_color.h" />
+    <ClInclude Include="vehicle_proofs.h" />
+    <ClInclude Include="vehicle_ptfx.h" />
+    <ClInclude Include="vehicle_ramp.h" />
+    <ClInclude Include="vehicle_randomization.h" />
+    <ClInclude Include="vehicle_secondary_color.h" />
+    <ClInclude Include="vehicle_weapons.h" />
+    <ClInclude Include="vfx_types.h" />
+    <ClInclude Include="wardrobe.h" />
+    <ClInclude Include="weapon.h" />
+    <ClInclude Include="weather.h" />
+    <ClInclude Include="weather_fx.h" />
+    <ClInclude Include="world.h" />
+    <ClInclude Include="xorstr.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="aimbot.cpp" />
+    <ClCompile Include="animation.cpp" />
+    <ClCompile Include="animations.cpp" />
+    <ClCompile Include="appearance.cpp" />
+    <ClCompile Include="assign_physical_index.cpp" />
+    <ClCompile Include="blacklist_manager.cpp" />
+    <ClCompile Include="byte_patch.cpp" />
+    <ClCompile Include="can_apply_data.cpp" />
+    <ClCompile Include="clipsets.cpp" />
+    <ClCompile Include="clone_create.cpp" />
+    <ClCompile Include="clone_remove.cpp" />
+    <ClCompile Include="clone_sync.cpp" />
+    <ClCompile Include="convert_thread_to_fiber.cpp" />
+    <ClCompile Include="crashes.cpp" />
+    <ClCompile Include="customs.cpp" />
+    <ClCompile Include="dynamic_entity_game_state_data_node.cpp" />
+    <ClCompile Include="entity_gun.cpp" />
+    <ClCompile Include="explosion_gun.cpp" />
+    <ClCompile Include="file.cpp" />
+    <ClCompile Include="folder.cpp" />
+    <ClCompile Include="fx_sky.cpp" />
+    <ClCompile Include="fx_visuals.cpp" />
+    <ClCompile Include="fx_world_glow.cpp" />
+    <ClCompile Include="game_fx.cpp" />
+    <ClCompile Include="get_network_event_data.cpp" />
+    <ClCompile Include="gravity_gun.cpp" />
+    <ClCompile Include="gs_item.cpp" />
+    <ClCompile Include="gta_thread_kill.cpp" />
+    <ClCompile Include="gta_thread_start.cpp" />
+    <ClCompile Include="gun_locker.cpp" />
+    <ClCompile Include="hand_trails.cpp" />
+    <ClCompile Include="impacts.cpp" />
+    <ClCompile Include="init_native_tables.cpp" />
+    <ClCompile Include="instructions.cpp" />
+    <ClCompile Include="iron_dome.cpp" />
+    <ClCompile Include="logger\crashhandler_windows.cpp" />
+    <ClCompile Include="logger\filesink.cpp" />
+    <ClCompile Include="logger\g3log.cpp" />
+    <ClCompile Include="logger\logcapture.cpp" />
+    <ClCompile Include="logger\loglevels.cpp" />
+    <ClCompile Include="logger\logmessage.cpp" />
+    <ClCompile Include="logger\logworker.cpp" />
+    <ClCompile Include="logger\stacktrace_windows.cpp" />
+    <ClCompile Include="logger\time.cpp" />
+    <ClCompile Include="magnet_gun.cpp" />
+    <ClCompile Include="memediting.cpp" />
+    <ClCompile Include="model.cpp" />
+    <ClCompile Include="movement.cpp" />
+    <ClCompile Include="native_hooks.cpp" />
+    <ClCompile Include="native_timer.cpp" />
+    <ClCompile Include="network.cpp" />
+    <ClCompile Include="network_events.cpp" />
+    <ClCompile Include="network_friends.cpp" />
+    <ClCompile Include="network_notifications.cpp" />
+    <ClCompile Include="network_players.cpp" />
+    <ClCompile Include="network_player_mgr.cpp" />
+    <ClCompile Include="network_player_search.cpp" />
+    <ClCompile Include="network_recent_players.cpp" />
+    <ClCompile Include="network_recovery.cpp" />
+    <ClCompile Include="network_recovery_misc.cpp" />
+    <ClCompile Include="network_recovery_rank.cpp" />
+    <ClCompile Include="network_recovery_stats.cpp" />
+    <ClCompile Include="network_recovery_unlocks.cpp" />
+    <ClCompile Include="network_selected_abusive.cpp" />
+    <ClCompile Include="network_selected_abusive_attackers.cpp" />
+    <ClCompile Include="network_selected_abusive_explosion.cpp" />
+    <ClCompile Include="network_selected_abusive_increment.cpp" />
+    <ClCompile Include="network_selected_crashes.cpp" />
+    <ClCompile Include="network_selected_esp.cpp" />
+    <ClCompile Include="network_selected_friendly.cpp" />
+    <ClCompile Include="network_selected_friendly_drops.cpp" />
+    <ClCompile Include="network_selected_kicks.cpp" />
+    <ClCompile Include="network_selected_player.cpp" />
+    <ClCompile Include="network_selected_spawner.cpp" />
+    <ClCompile Include="network_selected_teleport.cpp" />
+    <ClCompile Include="network_selected_teleport_apartment.cpp" />
+    <ClCompile Include="network_selected_text.cpp" />
+    <ClCompile Include="network_selected_trolling.cpp" />
+    <ClCompile Include="network_selected_trolling_entity_spammer.cpp" />
+    <ClCompile Include="network_selected_trolling_notifications.cpp" />
+    <ClCompile Include="network_selected_vehicle.cpp" />
+    <ClCompile Include="network_services.cpp" />
+    <ClCompile Include="network_spoofing.cpp" />
+    <ClCompile Include="network_spoofing_crew.cpp" />
+    <ClCompile Include="network_spoofing_crew_icon.cpp" />
+    <ClCompile Include="network_spoofing_crew_name.cpp" />
+    <ClCompile Include="network_spoofing_crew_tag.cpp" />
+    <ClCompile Include="network_spoofing_detection_flags.cpp" />
+    <ClCompile Include="network_spoofing_ip.cpp" />
+    <ClCompile Include="network_spoofing_name.cpp" />
+    <ClCompile Include="network_spoofing_rid.cpp" />
+    <ClCompile Include="network_toolkit.cpp" />
+    <ClCompile Include="net_message.cpp" />
+    <ClCompile Include="new_script_host_message.cpp" />
+    <ClCompile Include="notify.cpp" />
+    <ClCompile Include="object_creation_data_node.cpp" />
+    <ClCompile Include="on_screen_ped.cpp" />
+    <ClCompile Include="packet.cpp" />
+    <ClCompile Include="pack_clone_create.cpp" />
+    <ClCompile Include="paint_gun.cpp" />
+    <ClCompile Include="particle_gun.cpp" />
+    <ClCompile Include="ped_attach_data_node.cpp" />
+    <ClCompile Include="ped_creation_data_node.cpp" />
+    <ClCompile Include="ped_inventory_data_node.cpp" />
+    <ClCompile Include="physical_attach_data_node.cpp" />
+    <ClCompile Include="pickup_creation_data_node.cpp" />
+    <ClCompile Include="player.cpp" />
+    <ClCompile Include="playerMgr.cpp" />
+    <ClCompile Include="players.cpp" />
+    <ClCompile Include="player_appearance_data_node.cpp" />
+    <ClCompile Include="player_creation_data_node.cpp" />
+    <ClCompile Include="player_service.cpp" />
+    <ClCompile Include="presence_events.cpp" />
+    <ClCompile Include="proofs.cpp" />
+    <ClCompile Include="protections.cpp" />
+    <ClCompile Include="protections_entity.cpp" />
+    <ClCompile Include="protections_misc.cpp" />
+    <ClCompile Include="protections_network_events.cpp" />
+    <ClCompile Include="protections_presence.cpp" />
+    <ClCompile Include="protections_reactions.cpp" />
+    <ClCompile Include="protections_script_events.cpp" />
+    <ClCompile Include="ptfx.cpp" />
+    <ClCompile Include="render.cpp" />
+    <ClCompile Include="run_script_threads.cpp" />
+    <ClCompile Include="scenario.cpp" />
+    <ClCompile Include="scripted_event_handler.cpp" />
+    <ClCompile Include="script_patch.cpp" />
+    <ClCompile Include="script_patcher_service.cpp" />
+    <ClCompile Include="script_vm.cpp" />
+    <ClCompile Include="send_net_info_to_lobby.cpp" />
+    <ClCompile Include="spawner.cpp" />
+    <ClCompile Include="src\common.cpp">
+      <PrecompiledHeader>Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="src\detour_hook.cc" />
+    <ClCompile Include="src\features.cpp" />
+    <ClCompile Include="src\fiber_pool.cpp" />
+    <ClCompile Include="src\fonts.cpp" />
+    <ClCompile Include="src\menu.cpp" />
+    <ClCompile Include="src\hooking.cpp" />
+    <ClCompile Include="src\invoker.cpp" />
+    <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\memory\module.cpp" />
+    <ClCompile Include="src\memory\pattern.cpp" />
+    <ClCompile Include="src\memory\pattern_batch.cc" />
+    <ClCompile Include="src\memory\range.cpp" />
+    <ClCompile Include="src\pointers.cpp" />
+    <ClCompile Include="src\renderer.cpp" />
+    <ClCompile Include="src\script.cpp" />
+    <ClCompile Include="src\script_global.cpp" />
+    <ClCompile Include="src\script_hook.cpp" />
+    <ClCompile Include="src\script_local.cpp" />
+    <ClCompile Include="src\script_mgr.cpp" />
+    <ClCompile Include="src\vmt_hook.cpp" />
+    <ClCompile Include="swapchain.cpp" />
+    <ClCompile Include="take_off_ped_variation_task_data_node.cpp" />
+    <ClCompile Include="train_game_state_data_node.cpp" />
+    <ClCompile Include="vehicle.cpp" />
+    <ClCompile Include="vehicle_acrobatics.cpp" />
+    <ClCompile Include="vehicle_autopilot.cpp" />
+    <ClCompile Include="vehicle_boost.cpp" />
+    <ClCompile Include="vehicle_collision.cpp" />
+    <ClCompile Include="vehicle_color.cpp" />
+    <ClCompile Include="vehicle_control_data_node.cpp" />
+    <ClCompile Include="vehicle_creation_data_node.cpp" />
+    <ClCompile Include="vehicle_doors.cpp" />
+    <ClCompile Include="vehicle_gadget_data_node.cpp" />
+    <ClCompile Include="vehicle_gravity.cpp" />
+    <ClCompile Include="vehicle_handling.cpp" />
+    <ClCompile Include="vehicle_health.cpp" />
+    <ClCompile Include="vehicle_movement.cpp" />
+    <ClCompile Include="vehicle_multipliers.cpp" />
+    <ClCompile Include="vehicle_parachute.cpp" />
+    <ClCompile Include="vehicle_primary_color.cpp" />
+    <ClCompile Include="vehicle_proofs.cpp" />
+    <ClCompile Include="vehicle_ptfx.cpp" />
+    <ClCompile Include="vehicle_ramp.cpp" />
+    <ClCompile Include="vehicle_randomization.cpp" />
+    <ClCompile Include="vehicle_secondary_color.cpp" />
+    <ClCompile Include="vehicle_weapons.cpp" />
+    <ClCompile Include="wardrobe.cpp" />
+    <ClCompile Include="weapon.cpp" />
+    <ClCompile Include="weather.cpp" />
+    <ClCompile Include="weather_data.cpp" />
+    <ClCompile Include="weather_fx.cpp" />
+    <ClCompile Include="world.cpp" />
+    <ClCompile Include="write_ped_movement_data_node.cpp" />
+    <ClCompile Include="write_ped_orientation_data_node.cpp" />
+    <ClCompile Include="write_player_gamer_data_node.cpp" />
+    <ClCompile Include="write_player_game_state_data_node.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\vendor\MinHook\MinHook.vcxproj">
+      <Project>{1A77E127-8656-60C3-8F6E-EB99FBCCC624}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\vendor\ImGui\ImGui.vcxproj">
+      <Project>{C0FF640D-2C14-8DBE-F595-301E616989EF}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <MASM Include="src\invoker_asm.asm" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="protections_join_blocking.cpp" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+    <Import Project="$(VCTargetsPath)\BuildCustomizations\masm.targets" />
+  </ImportGroup>
+</Project>
